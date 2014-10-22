@@ -31,7 +31,7 @@ class UsuarioAdministrador extends Usuario {
     }
 
     public function getRoles() {
-        
+        return array('ROLE_USUARIO_ADMINISTRADOR');
     }
 
 }

@@ -161,7 +161,7 @@ class Usuario implements UserInterface
     }
 
     public function getRoles() {
-        return array('ROLE_ADMIN');
+        return array('ROLE_USUARIO');
     }
 
     public function getUsername() {
