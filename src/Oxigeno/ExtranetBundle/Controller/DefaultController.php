@@ -9,6 +9,6 @@ class DefaultController extends Controller
 {
     public function listarAction()
     {
-        return new Response('Acceso a zona privada!');
+        return $this->render('ExtranetBundle:Default:listar.html.twig');
     }
 }
