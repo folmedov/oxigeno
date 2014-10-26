@@ -4,6 +4,7 @@ namespace Oxigeno\LoginBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Oxigeno\ExtranetBundle\Entity\Persona;
 
 /**
  * Usuario
@@ -175,10 +176,10 @@ class Usuario implements UserInterface
     /**
      * Set persona
      * 
-     * @param \Oxigeno\LoginBundle\Entity\Oxigeno\ExtranetBundle\Entity\Persona $persona
+     * @param \Oxigeno\ExtranetBundle\Entity\Persona $persona
      * @return \Oxigeno\LoginBundle\Entity\Usuario
      */
-    function setPersona(Oxigeno\ExtranetBundle\Entity\Persona $persona) {
+    function setPersona(Persona $persona) {
         $this->persona = $persona;
         return $this;
     }
