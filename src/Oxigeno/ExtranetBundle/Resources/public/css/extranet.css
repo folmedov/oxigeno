@@ -121,6 +121,11 @@ nav {
     Sección comun del extranet
    ===========================================================================*/
 
+#contenedor {
+    position: relative;
+    width: 100%;
+}
+
 .iconos {
     width: 16px;
     height: 16px;

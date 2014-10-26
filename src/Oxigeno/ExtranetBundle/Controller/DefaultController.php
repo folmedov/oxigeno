@@ -4,12 +4,7 @@ namespace Oxigeno\ExtranetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Oxigeno\ExtranetBundle\Entity\Paciente;
-use Oxigeno\ExtranetBundle\Entity\Persona;
-use Oxigeno\ExtranetBundle\Entity\Direccion;
-use Oxigeno\ExtranetBundle\Entity\Telefono;
-use Doctrine\Common\Collections\ArrayCollection;
 use Oxigeno\ExtranetBundle\Form\PacienteType;
-use Oxigeno\ExtranetBundle\Form\PersonaType;
 
 class DefaultController extends Controller {
 
@@ -26,7 +21,6 @@ class DefaultController extends Controller {
     public function nuevoAction() {
         $peticion = $this->getRequest();
         $paciente = new Paciente();
-        //$persona = new Persona();
         
         $formulario = $this->createForm(new PacienteType(), $paciente);
         
