@@ -112,11 +112,3 @@ input[type="password"] {
     background-image: -o-linear-gradient(top, #E0E0E0, #BDBBBC);
     background-image: linear-gradient(to bottom, #E0E0E0, #BDBBBC);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#E0E0E0, endColorstr=#BDBBBC);
 }
-
-footer {
-    width: 100%;
-    position: absolute;
-    bottom: 10%;
-    text-align: center;
-    color: white;
-}

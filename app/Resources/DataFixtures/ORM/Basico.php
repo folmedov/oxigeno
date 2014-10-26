@@ -5,6 +5,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Oxigeno\LoginBundle\Entity\UsuarioAdministrador;
+use Oxigeno\ExtranetBundle\Entity\Paciente;
 
 class Basico implements FixtureInterface, ContainerAwareInterface
 {
@@ -23,6 +24,34 @@ class Basico implements FixtureInterface, ContainerAwareInterface
         $usuarioAdmin->setEmail('f.olmedo.v@gmail.com');
         
         $manager->persist($usuarioAdmin);
+        $manager->flush();
+        
+        // creo un paciente
+        $paciente = new Paciente();
+        $paciente->setFechaIngreso(new \DateTime('today'));
+        
+        $persona = $paciente->getPersona();
+        $persona->setNombre('Francisco');
+        $persona->setApellido('Olmedo Valencia');
+        $persona->setRut('163015048');
+        $persona->setFechaNacimiento(new \DateTime('1986-04-19'));
+        $persona->setEmail('f.olmedo.v@gmail.com');
+        
+        $direccion = $persona->getDireccion();
+        $direccion->setDireccion('Manuel Bulnes 756');
+        $direccion->setPersona($persona);
+        
+        $telefono1 = $persona->getTelefonos()->get('telefono_personal');
+        $telefono1->setNumero('+56987790438');
+        $telefono1->setPersona($persona);
+          
+        $telefono2 = $persona->getTelefonos()->get('telefono_de_contacto');
+        $telefono2->setNumero('+56987790438');
+        $telefono2->setPersona($persona);
+        
+        $paciente->setPersona($persona);
+        
+        $manager->persist($paciente);
         $manager->flush();
     }
 }

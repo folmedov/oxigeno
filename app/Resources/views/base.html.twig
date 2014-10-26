@@ -9,10 +9,12 @@
     <body id="{% block id '' %}">
         <div id="contenedor">
             {% block body %}{% endblock %}
-            <footer>
-                &copy; {{ 'now' | date('Y') }} - Oxígeno | Av. Ariztía #1465, Quillota, 5ta Región, Chile.
-            </footer>
         </div>
+        
+        <footer>
+            <div class="linea-gradiente"></div>
+            &copy; {{ 'now' | date('Y') }} - Oxígeno | Av. Ariztía #1465, Quillota, 5ta Región, Chile.
+        </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

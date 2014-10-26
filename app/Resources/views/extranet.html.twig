@@ -1,17 +1,64 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/login/css/normalizar.css') }}" 
+          rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/login/css/comun.css') }}" 
+          rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/extranet/css/extranet.css') }}" 
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% set usuario = app.user %}
 
 {% block body %}
-    <header>
-        <h1><a>OXIGENO</a></h1>
-        <ul>
-            <li>##Nombre de usuario##</li>
-            <li>##Ajustes de cuenta##</li>
-            <li><a href="{{ path('login_logout') }}">##Cerrar sesion##</a></li>
-        </ul>
-        <nav>
-            
-        </nav>
+    <header id="contenedor-header">
+        <h1><a class="logo" href="{{ path('extranet_paciente_listar') }}">OXIGENO</a></h1>
+        <div class="seccion-menu-usuario">
+            <ul class="menu-usuario">
+                <li>
+                    {% if usuario.persona %}
+                        {{ usuario.persona.nombre }}
+                    {% else %}
+                        {{ usuario.nombre }}
+                    {% endif %}
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="iconos" 
+                             src="{{ asset('bundles/extranet/images/icons/gemicon/32x32/row-3/12.png') }}" 
+                             title="AJUSTES DE CUENTA" />
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('login_logout') }}">
+                        <img class="iconos" 
+                             src="{{ asset('bundles/extranet/images/icons/flaticon/door9.png') }}" 
+                             title="CERRAR SESION" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="linea-gradiente" id="div-aux"></div>
     </header>
+    
+    <section id="contenedor-central">
+        <nav>                
+            <ul class="menu-lateral">
+                <li>MENU PRINCIPAL</li>
+                <li><a href="{{ path('extranet_paciente_listar') }}">AREA PACIENTES</a></li>
+                <li><a href="#">ESTADISTICO</a></li>
+            </ul>
+        </nav>
+
+        <article>
+            <ul>
+                <li><a href="{{ path('extranet_paciente_listar') }}">Inicio></a></li>
+                {% block breadcrumb %}{% endblock %}
+            </ul>
+            {% block article %}{% endblock %}
+        </article>
+        <div id="div-aux"></div>
+    </section>
+    
 {% endblock %}

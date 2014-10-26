@@ -1,0 +1,133 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-10-2014, 07:30:22 PM
+    Author     : francisco
+*/
+
+/* =============================================================================
+    Sección del header
+   ===========================================================================*/
+#contenedor-header {
+    position: relative;
+}
+
+.logo{
+    float: left;
+    padding-left: 5%;
+}
+
+.logo, .logo:link, .logo:visited, .logo:active, .logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.seccion-menu-usuario {
+    float: right;
+    padding-right: 5%;
+}
+
+.seccion-menu-usuario ul {
+    list-style-type: none;
+}
+
+.seccion-menu-usuario ul li{
+   display: inline;
+   text-align: center;
+   margin: 0 10px 0 0;
+}
+
+/* =============================================================================
+    Sección central
+   ===========================================================================*/
+#contenedor-central {
+    position: relative;
+    margin: 0 5% 0 5%;
+    background-color: white;
+}
+
+nav, article {
+    float: left;
+    margin: 1%;
+}
+
+nav {
+    height: 100%;
+    background-color: gainsboro;
+}
+
+.menu-lateral {
+    border-bottom: gray solid 1px;
+    border-left: gray solid 1px;
+    border-right: gray solid 1px;
+}
+
+.menu-lateral li {
+    padding: 10px;
+    border-top: gray solid 1px;
+}
+
+#div-aux {
+    clear: both;
+}
+
+/* =============================================================================
+    Formularios
+   ===========================================================================*/
+
+.formulario-nuevo-paciente div {
+    width: 900px;
+}
+
+.formulario-nuevo-paciente fieldset {
+    padding-bottom: 2%;
+}
+
+.formulario-nuevo-paciente fieldset div {
+    padding: .5% 0 .5% 0;
+}
+
+.formulario-nuevo-paciente legend {
+    margin-bottom: 1%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.formulario-nuevo-paciente label {
+    display: inline-block;
+    width: 15%;
+}
+
+.formulario-nuevo-paciente input[type="text"] {
+    display: inline-block;
+    width: 25%;
+}
+
+.formulario-nuevo-paciente input[type="email"] {
+    display: inline-block;
+    width: 25%;
+}
+
+.formulario-nuevo-paciente label + div[id*="fecha"] {
+    display: inline-block;
+    overflow: hidden;
+}
+
+
+/* =============================================================================
+    Sección comun del extranet
+   ===========================================================================*/
+
+.iconos {
+    width: 16px;
+    height: 16px;
+}
+
+.linea-gradiente {
+    margin-bottom: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, white, black, white);
+}

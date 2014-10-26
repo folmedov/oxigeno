@@ -1,3 +1,7 @@
 extranet_paciente_listar:
     pattern:  /listar
     defaults: { _controller: ExtranetBundle:Default:listar }
+
+extranet_paciente_nuevo:
+    pattern:  /nuevo
+    defaults: { _controller: ExtranetBundle:Default:nuevo }

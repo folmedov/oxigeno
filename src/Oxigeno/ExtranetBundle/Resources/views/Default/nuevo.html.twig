@@ -1,0 +1,50 @@
+{% extends '::extranet.html.twig' %}
+
+{% block title %}Nuevo paciente{% endblock %}
+{% block id 'nuevo_paciente' %}
+
+{% block article %}
+
+    <form class="formulario-nuevo-paciente" action="{{ path('extranet_paciente_nuevo') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_errors(formulario) }}
+        
+        <fieldset>
+            <legend>Datos Personales</legend>
+            {{ form_row(formulario.persona.nombre) }}
+            {{ form_row(formulario.persona.apellido) }}
+            {{ form_row(formulario.persona.rut) }}
+            {{ form_widget(formulario.persona.rut) }}
+            {{ form_row(formulario.persona.fecha_nacimiento) }}
+            {{ form_row(formulario.persona.direccion.direccion) }}
+            
+            {# FORMA FEA DE ASIGNAR EL ATRIBUTO FOR AL LABEL DE LOS TELEFONOS #}
+            {% set cont = 0 %}
+            {% for telefono in formulario.persona.telefonos %}
+                {% set telefono_personal_for = 'oxigeno_extranetbundle_pacientetype_persona_telefonos_telefono_personal_numero' %}
+                {% set telefono_contacto_for = 'oxigeno_extranetbundle_pacientetype_persona_telefonos_telefono_de_contacto_numero' %}
+                
+                <div>
+                    {% if cont == 0 %}                    
+                        {{ form_label(telefono, null, {'label_attr': {'for': telefono_personal_for } }) }}
+                        {{ form_widget(telefono.numero) }}
+                    {% else %}
+                        {{ form_label(telefono, null, {'label_attr': {'for': telefono_contacto_for } }) }}
+                        {{ form_widget(telefono.numero) }}
+                    {% endif %}
+                </div>
+                
+                {% set cont = cont + 1 %}
+            {% endfor %}
+            {{ form_row(formulario.persona.email) }}
+        </fieldset>
+        
+        <fieldset>
+            <legend>Ficha Medica</legend>
+            {{ form_row(formulario.fecha_ingreso) }}
+        </fieldset>
+        
+        {{ form_rest(formulario) }}
+        
+        <input type="submit" value="Ingresar Paciente" />
+    </form>
+{% endblock %}

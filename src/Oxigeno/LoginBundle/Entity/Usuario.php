@@ -52,6 +52,13 @@ class Usuario implements UserInterface
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+    
+    /**
+     * @var Oxigeno\ExtranetBundle\Entity\Persona
+     * 
+     * @ORM\ManyToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona")
+     */
+    private $persona;
 
 
     /**
@@ -155,7 +162,28 @@ class Usuario implements UserInterface
     {
         return $this->email;
     }
+    
+    /**
+     * Get persona
+     * 
+     * @return Oxigeno\ExtranetBundle\Entity\Persona
+     */
+    function getPersona() {
+        return $this->persona;
+    }
 
+    /**
+     * Set persona
+     * 
+     * @param \Oxigeno\LoginBundle\Entity\Oxigeno\ExtranetBundle\Entity\Persona $persona
+     * @return \Oxigeno\LoginBundle\Entity\Usuario
+     */
+    function setPersona(Oxigeno\ExtranetBundle\Entity\Persona $persona) {
+        $this->persona = $persona;
+        return $this;
+    }
+
+    
     public function eraseCredentials() {
         
     }

@@ -1,1 +1,35 @@
 {% extends '::extranet.html.twig' %}
+
+{% block title %}Lista de pacientes{% endblock %}
+{% block id 'listar_pacientes' %}
+    
+{% block article %}
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p>{{ mensaje }}</p>
+    {% endfor %}
+
+    <ul><li><a href="{{ path('extranet_paciente_nuevo') }}">Nuevo Paciente</a></li></ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr>
+                <td>{{ paciente.persona.rut }}</td>
+                <td>{{ paciente.persona.nombre }}</td>
+                <td>{{ paciente.persona.apellido }}</td>                
+                <td><a href="#">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+        
+    
+{% endblock %}    
