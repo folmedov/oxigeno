@@ -6,6 +6,8 @@
 {% block article %}
     <ul><li><a href="{{ path('extranet_paciente_editar', { 'id': paciente }) }}">Editar Paciente</a></li></ul>
     
+    <h2>Ficha Paciente</h2>
+    
     <form class="formulario-nuevo-paciente" action="#" {{ form_enctype(formulario) }}>
         {{ form_errors(formulario) }}
         

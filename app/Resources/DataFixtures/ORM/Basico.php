@@ -4,7 +4,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Oxigeno\LoginBundle\Entity\UsuarioAdministrador;
+use Oxigeno\LoginBundle\Entity\Administrador;
 use Oxigeno\ExtranetBundle\Entity\Paciente;
 
 class Basico implements FixtureInterface, ContainerAwareInterface
@@ -18,7 +18,7 @@ class Basico implements FixtureInterface, ContainerAwareInterface
     
     public function load(ObjectManager $manager) {
         // creo un usuario de tipo administrador
-        $usuarioAdmin = new UsuarioAdministrador();
+        $usuarioAdmin = new Administrador();
         $usuarioAdmin->setNombre('folmedov');
         $usuarioAdmin->setPassword('1q2w3e');
         $usuarioAdmin->setEmail('f.olmedo.v@gmail.com');

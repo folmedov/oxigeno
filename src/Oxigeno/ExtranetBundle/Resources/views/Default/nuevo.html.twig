@@ -4,7 +4,8 @@
 {% block id 'nuevo_paciente' %}
 
 {% block article %}
-
+    <h2>Ficha Paciente</h2>
+    
     <form class="formulario-nuevo-paciente" action="{{ path('extranet_paciente_nuevo') }}" method="post" {{ form_enctype(formulario) }}>
         {{ form_errors(formulario) }}
         

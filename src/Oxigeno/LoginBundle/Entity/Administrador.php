@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UsuarioAdministrador
  *
- * @ORM\Table(name="usuario_administrador")
+ * @ORM\Table(name="administrador")
  * @ORM\Entity
  */
-class UsuarioAdministrador extends Usuario {
+class Administrador extends Usuario {
 
     /**
      * @var integer
@@ -31,7 +31,7 @@ class UsuarioAdministrador extends Usuario {
     }
 
     public function getRoles() {
-        return array('ROLE_USUARIO_ADMINISTRADOR');
+        return array('ROLE_ADMINISTRADOR');
     }
 
 }

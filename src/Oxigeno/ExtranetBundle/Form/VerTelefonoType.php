@@ -20,7 +20,6 @@ class VerTelefonoType extends TelefonoType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('numero', null, array(
                     'disabled' => true,
-                    'required' => true,
                 ))
             ;
     }

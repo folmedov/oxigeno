@@ -1,19 +1,19 @@
 {% extends '::extranet.html.twig' %}
 
-{% block title %}Editar paciente{% endblock %}
-{% block id 'editar_paciente' %}
+{% block title %}Ajustes de cuenta{% endblock %}
+{% block id 'editar_perfil' %}
 
 {% block article %}
-    <h2>Ficha Paciente</h2>
+    <h2>Ajustes de Cuenta</h2>
     
-    <form class="formulario-nuevo-paciente" action="{{ path('extranet_paciente_editar', { 'id': paciente }) }}" method="post" {{ form_enctype(formulario) }}>
+    <form class="formulario-nuevo-paciente" action="{{ path('extranet_perfil_editar') }}" method="post" {{ form_enctype(formulario) }}>
         {{ form_errors(formulario) }}
         
         <fieldset>
             <legend>Datos Personales</legend>
             {{ form_row(formulario.persona.nombre) }}
             {{ form_row(formulario.persona.apellido) }}
-            {{ form_row(formulario.persona.rut, {'attr': { 'disabled': true } }) }}
+            {{ form_row(formulario.persona.rut) }}
             {{ form_widget(formulario.persona.rut) }}
             {{ form_row(formulario.persona.fecha_nacimiento) }}
             {{ form_row(formulario.persona.direccion.direccion) }}
@@ -40,12 +40,12 @@
         </fieldset>
         
         <fieldset>
-            <legend>Ficha Medica</legend>
-            {{ form_row(formulario.fecha_ingreso) }}
+            <legend>Datos de Usuario</legend>
+            {{ form_widget(formulario) }}
         </fieldset>
         
         {{ form_rest(formulario) }}
         
-        <input type="submit" value="Editar Paciente" />
+        <input type="submit" value="Editar Perfil" />
     </form>
 {% endblock %}

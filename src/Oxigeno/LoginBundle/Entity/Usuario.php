@@ -13,7 +13,7 @@ use Oxigeno\ExtranetBundle\Entity\Persona;
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"Usuario" = "Usuario", "UsuarioAdministrador" = "UsuarioAdministrador"})
+ * @ORM\DiscriminatorMap({"Usuario" = "Usuario", "Administrador" = "Administrador"})
  */
 class Usuario implements UserInterface
 {
@@ -57,7 +57,7 @@ class Usuario implements UserInterface
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Persona
      * 
-     * @ORM\ManyToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona")
+     * @ORM\ManyToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona", cascade={"persist"})
      */
     private $persona;
 

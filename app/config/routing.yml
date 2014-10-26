@@ -4,7 +4,7 @@ login:
 
 extranet:
     resource: "@ExtranetBundle/Resources/config/routing.yml"
-    prefix:   /extranet/paciente
+    prefix:   /extranet
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******

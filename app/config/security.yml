@@ -2,7 +2,7 @@ security:
     firewalls:
         extranet:
             pattern:   ^/
-            provider:  usuario_administrador
+            provider:  administrador
             anonymous: ~
             form_login: 
                 login_path: login_login
@@ -14,11 +14,11 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/extranet/*, roles: ROLE_USUARIO_ADMINISTRADOR }
+        - { path: ^/extranet/*, roles: ROLE_ADMINISTRADOR }
         
     providers:
-        usuario_administrador:
-            entity: { class: Oxigeno\LoginBundle\Entity\UsuarioAdministrador, property: nombre }
+        administrador:
+            entity: { class: Oxigeno\LoginBundle\Entity\Administrador, property: nombre }
     
     encoders:
-        Oxigeno\LoginBundle\Entity\UsuarioAdministrador: { algorithm: plaintext }
+        Oxigeno\LoginBundle\Entity\Administrador: { algorithm: plaintext }
