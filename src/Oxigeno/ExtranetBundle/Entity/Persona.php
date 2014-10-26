@@ -85,10 +85,7 @@ class Persona
     
     public function __construct() {
         $this->direccion = new Direccion();
-        $this->telefonos = new ArrayCollection(array(
-            'telefono_personal' => new Telefono(), 
-            'telefono_de_contacto' => new Telefono(),
-        ));
+        $this->telefonos = new ArrayCollection(array(new Telefono(), new Telefono()));
     }
 
 

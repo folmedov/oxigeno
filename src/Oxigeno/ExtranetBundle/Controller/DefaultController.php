@@ -4,7 +4,9 @@ namespace Oxigeno\ExtranetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Oxigeno\ExtranetBundle\Entity\Paciente;
+use Oxigeno\ExtranetBundle\Entity\Util;
 use Oxigeno\ExtranetBundle\Form\PacienteType;
+use Oxigeno\ExtranetBundle\Form\VerPacienteType;
 
 class DefaultController extends Controller {
 
@@ -43,7 +45,7 @@ class DefaultController extends Controller {
                 $em->persist($paciente);
                 $em->flush();
                 
-                $peticion->getSession()->setFlash('info', 'Se registro el paciente correctamente');
+                $peticion->getSession()->setFlash('info', Util::MNS_PACIENTE_INGRESAR);
                 
                 return $this->redirect($this->generateUrl('extranet_paciente_listar'));
             }
@@ -51,6 +53,51 @@ class DefaultController extends Controller {
 
         return $this->render('ExtranetBundle:Default:nuevo.html.twig', array(
                     'formulario' => $formulario->createView(),
+        ));
+    }
+    
+    public function editarAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $peticion = $this->getRequest();
+        
+        $paciente = $em->getRepository('ExtranetBundle:Paciente')->findOneById($id);
+        
+        $formulario = $this->createForm(new PacienteType(), $paciente);
+        
+        if ($peticion->getMethod() == 'POST') {
+            $rut = $formulario->getData()->getPersona()->getRut();
+            
+            $formulario->bind($peticion);
+            
+            if ($formulario->isValid()) { 
+                if (!$paciente->getPersona()->getRut()) {
+                    $paciente->getPersona()->setRut($rut);
+                }
+                
+                $em->flush();
+                
+                $peticion->getSession()->setFlash('info', Util::MNS_PACIENTE_EDITAR);
+                
+                return $this->redirect($this->generateUrl('extranet_paciente_listar'));
+            }
+        }
+        
+        return $this->render('ExtranetBundle:Default:editar.html.twig', array(
+                    'formulario' => $formulario->createView(),
+                    'paciente' => $paciente->getId(),
+        ));
+    }
+    
+    public function verAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        
+        $paciente = $em->getRepository('ExtranetBundle:Paciente')->findOneById($id);
+        
+        $formulario = $this->createForm(new VerPacienteType(), $paciente);
+        
+        return $this->render('ExtranetBundle:Default:ver.html.twig', array(
+                    'formulario' => $formulario->createView(),
+                    'paciente' => $paciente->getId(),
         ));
     }
 

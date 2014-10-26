@@ -5,3 +5,11 @@ extranet_paciente_listar:
 extranet_paciente_nuevo:
     pattern:  /nuevo
     defaults: { _controller: ExtranetBundle:Default:nuevo }
+
+extranet_paciente_editar:
+    pattern:  /editar/{id}
+    defaults: { _controller: ExtranetBundle:Default:editar }
+
+extranet_paciente_ver:
+    pattern:  /ver/{id}
+    defaults: { _controller: ExtranetBundle:Default:ver }

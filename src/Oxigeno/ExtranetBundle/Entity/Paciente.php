@@ -36,13 +36,13 @@ class Paciente
      * 
      * @Assert\NotNull()
      * @Assert\Type(type="Oxigeno\ExtranetBundle\Entity\Persona")
-     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona", cascade={"persist", "merge"})
      */
     private $persona;
     
     public function __construct() {
         $this->persona = new Persona();
-        //$this->setFechaIngreso(new \DateTime('now'));
+        $this->fecha_ingreso = new \DateTime('now');
     }
 
 

@@ -24,7 +24,10 @@
                 <td>{{ paciente.persona.rut }}</td>
                 <td>{{ paciente.persona.nombre }}</td>
                 <td>{{ paciente.persona.apellido }}</td>                
-                <td><a href="#">Ver</a></td>
+                <td>
+                    <a href="{{ path('extranet_paciente_ver', { 'id': paciente.id }) }}">Ver</a>
+                    <!--<a href="{{ path('extranet_paciente_editar', { 'id': paciente.id }) }}">Editar</a>-->
+                </td>
             </tr>
             {% endfor %}
         </tbody>

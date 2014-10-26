@@ -14,7 +14,7 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/paciente/*, roles: ROLE_USUARIO_ADMINISTRADOR }
+        - { path: ^/extranet/*, roles: ROLE_USUARIO_ADMINISTRADOR }
         
     providers:
         usuario_administrador:

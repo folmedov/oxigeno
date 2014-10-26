@@ -28,7 +28,7 @@ class PersonaType extends AbstractType {
                 ->add('apellido')
                 ->add('rut')
                 ->add('email')
-                ->add('fecha_nacimiento', 'date')
+                ->add('fecha_nacimiento', 'birthday')
                 ->add('direccion', new DireccionType())
                 ->add('telefonos', 'collection', array(
                     'type' => new TelefonoType()
@@ -39,7 +39,6 @@ class PersonaType extends AbstractType {
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'Oxigeno\ExtranetBundle\Entity\Persona', 
-            'by_reference' => false, 
         ));
     }
 

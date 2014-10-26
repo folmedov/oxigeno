@@ -1,18 +1,17 @@
 {% extends '::extranet.html.twig' %}
 
-{% block title %}Nuevo paciente{% endblock %}
-{% block id 'nuevo_paciente' %}
+{% block title %}Editar paciente{% endblock %}
+{% block id 'editar_paciente' %}
 
 {% block article %}
-
-    <form class="formulario-nuevo-paciente" action="{{ path('extranet_paciente_nuevo') }}" method="post" {{ form_enctype(formulario) }}>
+    <form class="formulario-nuevo-paciente" action="{{ path('extranet_paciente_editar', { 'id': paciente }) }}" method="post" {{ form_enctype(formulario) }}>
         {{ form_errors(formulario) }}
         
         <fieldset>
             <legend>Datos Personales</legend>
             {{ form_row(formulario.persona.nombre) }}
             {{ form_row(formulario.persona.apellido) }}
-            {{ form_row(formulario.persona.rut) }}
+            {{ form_row(formulario.persona.rut, {'attr': { 'disabled': true } }) }}
             {{ form_widget(formulario.persona.rut) }}
             {{ form_row(formulario.persona.fecha_nacimiento) }}
             {{ form_row(formulario.persona.direccion.direccion) }}
@@ -26,7 +25,7 @@
                 <div>
                     {% if cont == 0 %}                    
                         {{ form_label(telefono, 'Telefono personal', {'label_attr': {'for': telefono_personal_for } }) }}
-                        {{ form_widget(telefono.numero, {'attr': { 'required': true } }) }}
+                        {{ form_widget(telefono.numero) }}
                     {% else %}
                         {{ form_label(telefono, 'Telefono de contacto', {'label_attr': {'for': telefono_contacto_for } }) }}
                         {{ form_widget(telefono.numero) }}
@@ -45,6 +44,6 @@
         
         {{ form_rest(formulario) }}
         
-        <input type="submit" value="Ingresar Paciente" />
+        <input type="submit" value="Editar Paciente" />
     </form>
 {% endblock %}

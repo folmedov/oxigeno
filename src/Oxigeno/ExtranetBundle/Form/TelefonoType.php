@@ -23,7 +23,7 @@ class TelefonoType extends AbstractType {
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('numero')
+        $builder->add('numero', 'text', array('required' => false))
             ;
     }
     
