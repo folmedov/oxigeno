@@ -17,8 +17,8 @@
         <div class="seccion-menu-usuario">
             <ul class="menu-usuario">
                 <li>
-                    {% if usuario.persona %}
-                        {{ usuario.persona.nombre }}
+                    {% if usuario.persona and usuario.persona.nombre %}
+                        {{ usuario.persona }} ({{ usuario.nombre }})
                     {% else %}
                         {{ usuario.nombre }}
                     {% endif %}
