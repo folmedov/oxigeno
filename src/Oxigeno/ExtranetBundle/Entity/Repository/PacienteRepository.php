@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Oxigeno\ExtranetBundle\Entity;
+namespace Oxigeno\ExtranetBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

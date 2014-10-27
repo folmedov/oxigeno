@@ -15,7 +15,7 @@ class DefaultController extends Controller {
         
         $lista_pacientes = $em->getRepository('ExtranetBundle:Paciente')->findPacientes();
         
-        return $this->render('ExtranetBundle:Default:listar.html.twig', array(
+        return $this->render('ExtranetBundle:Paciente:listar.html.twig', array(
             'pacientes' => $lista_pacientes,
         ));
     }
@@ -51,7 +51,7 @@ class DefaultController extends Controller {
             }
         }
 
-        return $this->render('ExtranetBundle:Default:nuevo.html.twig', array(
+        return $this->render('ExtranetBundle:Paciente:nuevo.html.twig', array(
                     'formulario' => $formulario->createView(),
         ));
     }
@@ -82,7 +82,7 @@ class DefaultController extends Controller {
             }
         }
         
-        return $this->render('ExtranetBundle:Default:editar.html.twig', array(
+        return $this->render('ExtranetBundle:Paciente:editar.html.twig', array(
                     'formulario' => $formulario->createView(),
                     'paciente' => $paciente->getId(),
         ));
@@ -95,7 +95,7 @@ class DefaultController extends Controller {
         
         $formulario = $this->createForm(new VerPacienteType(), $paciente);
         
-        return $this->render('ExtranetBundle:Default:ver.html.twig', array(
+        return $this->render('ExtranetBundle:Paciente:ver.html.twig', array(
                     'formulario' => $formulario->createView(),
                     'paciente' => $paciente->getId(),
         ));

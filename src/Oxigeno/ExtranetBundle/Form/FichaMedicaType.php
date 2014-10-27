@@ -13,28 +13,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Description of PacienteType
+ * Description of FichaMedicaType
  *
  * @author francisco
  */
-class PacienteType extends AbstractType {
+class FichaMedicaType extends AbstractType {
     
     public function getName() {
-        return 'oxigeno_extranetbundle_pacientetype';
+        return 'oxigeno_extranetbundle_fichamedicatype';
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('fecha_ingreso', 'date')
-                ->add('persona', new PersonaType())
-                ->add('ficha_medica', new FichaMedicaType())
+        $builder->add('diagnostico')
             ;
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Oxigeno\ExtranetBundle\Entity\Paciente', 
-            'cascade_validation' => true,
+            'data_class' => 'Oxigeno\ExtranetBundle\Entity\FichaMedica',
         ));
     }
-    
 }

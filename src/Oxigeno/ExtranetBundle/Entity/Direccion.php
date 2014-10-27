@@ -11,8 +11,8 @@ use Oxigeno\ExtranetBundle\Entity\Persona;
  * @ORM\Table(name="direccion")
  * @ORM\Entity
  */
-class Direccion
-{
+class Direccion {
+
     /**
      * @var integer
      *
@@ -42,7 +42,7 @@ class Direccion
      * @ORM\Column(name="lng", type="float", nullable=true)
      */
     private $lng;
-    
+
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Persona
      * 
@@ -50,14 +50,12 @@ class Direccion
      */
     private $persona;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +65,7 @@ class Direccion
      * @param string $direccion
      * @return Direccion
      */
-    public function setDireccion($direccion)
-    {
+    public function setDireccion($direccion) {
         $this->direccion = $direccion;
 
         return $this;
@@ -79,8 +76,7 @@ class Direccion
      *
      * @return string 
      */
-    public function getDireccion()
-    {
+    public function getDireccion() {
         return $this->direccion;
     }
 
@@ -90,8 +86,7 @@ class Direccion
      * @param float $lat
      * @return Direccion
      */
-    public function setLat($lat)
-    {
+    public function setLat($lat) {
         $this->lat = $lat;
 
         return $this;
@@ -102,8 +97,7 @@ class Direccion
      *
      * @return float 
      */
-    public function getLat()
-    {
+    public function getLat() {
         return $this->lat;
     }
 
@@ -113,8 +107,7 @@ class Direccion
      * @param float $lng
      * @return Direccion
      */
-    public function setLng($lng)
-    {
+    public function setLng($lng) {
         $this->lng = $lng;
 
         return $this;
@@ -125,11 +118,10 @@ class Direccion
      *
      * @return float 
      */
-    public function getLng()
-    {
+    public function getLng() {
         return $this->lng;
     }
-    
+
     /**
      * Get persona
      * 
@@ -149,8 +141,9 @@ class Direccion
         $this->persona = $persona;
         return $this;
     }
-    
+
     public function __toString() {
         return $this->getDireccion();
     }
+
 }

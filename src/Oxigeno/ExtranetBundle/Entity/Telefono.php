@@ -11,8 +11,8 @@ use Oxigeno\ExtranetBundle\Entity\Persona;
  * @ORM\Table(name="telefono")
  * @ORM\Entity
  */
-class Telefono
-{
+class Telefono {
+
     /**
      * @var integer
      *
@@ -28,7 +28,7 @@ class Telefono
      * @ORM\Column(name="numero", type="string", length=12)
      */
     private $numero;
-    
+
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Persona
      * 
@@ -36,14 +36,12 @@ class Telefono
      */
     private $persona;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -53,8 +51,7 @@ class Telefono
      * @param string $numero
      * @return Telefono
      */
-    public function setNumero($numero)
-    {
+    public function setNumero($numero) {
         $this->numero = $numero;
 
         return $this;
@@ -65,11 +62,10 @@ class Telefono
      *
      * @return string 
      */
-    public function getNumero()
-    {
+    public function getNumero() {
         return $this->numero;
     }
-    
+
     /**
      * Get persona
      * 
@@ -78,7 +74,7 @@ class Telefono
     function getPersona() {
         return $this->persona;
     }
-    
+
     /**
      * Set persona
      * 
@@ -89,6 +85,5 @@ class Telefono
         $this->persona = $persona;
         return $this;
     }
-
 
 }

@@ -18,8 +18,8 @@ use Oxigeno\ExtranetBundle\Entity\Telefono;
  * @UniqueEntity("rut")
  * @Assert\Callback(methods={"esRutValido"})
  */
-class Persona
-{
+class Persona {
+
     /**
      * @var integer
      *
@@ -68,34 +68,32 @@ class Persona
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
-    
+
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Direccion
      * 
      * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Direccion", mappedBy="persona", cascade={"persist"})
      */
     private $direccion;
-    
+
     /**
      * @var Telefono
      * 
      * @ORM\OneToMany(targetEntity="Oxigeno\ExtranetBundle\Entity\Telefono", mappedBy="persona", cascade={"persist"})
      */
     private $telefonos;
-    
+
     public function __construct() {
         $this->direccion = new Direccion();
         $this->telefonos = new ArrayCollection(array(new Telefono(), new Telefono()));
     }
-
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -105,8 +103,7 @@ class Persona
      * @param string $rut
      * @return Persona
      */
-    public function setRut($rut)
-    {
+    public function setRut($rut) {
         $this->rut = $rut;
 
         return $this;
@@ -117,8 +114,7 @@ class Persona
      *
      * @return string 
      */
-    public function getRut()
-    {
+    public function getRut() {
         return $this->rut;
     }
 
@@ -128,8 +124,7 @@ class Persona
      * @param string $nombre
      * @return Persona
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
 
         return $this;
@@ -140,8 +135,7 @@ class Persona
      *
      * @return string 
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
     }
 
@@ -151,8 +145,7 @@ class Persona
      * @param string $apellido
      * @return Persona
      */
-    public function setApellido($apellido)
-    {
+    public function setApellido($apellido) {
         $this->apellido = $apellido;
 
         return $this;
@@ -163,8 +156,7 @@ class Persona
      *
      * @return string 
      */
-    public function getApellido()
-    {
+    public function getApellido() {
         return $this->apellido;
     }
 
@@ -174,8 +166,7 @@ class Persona
      * @param \DateTime $fechaNacimiento
      * @return Persona
      */
-    public function setFechaNacimiento($fechaNacimiento)
-    {
+    public function setFechaNacimiento($fechaNacimiento) {
         $this->fecha_nacimiento = $fechaNacimiento;
 
         return $this;
@@ -186,8 +177,7 @@ class Persona
      *
      * @return \DateTime 
      */
-    public function getFechaNacimiento()
-    {
+    public function getFechaNacimiento() {
         return $this->fecha_nacimiento;
     }
 
@@ -197,8 +187,7 @@ class Persona
      * @param string $correo
      * @return Persona
      */
-    public function setEmail($correo)
-    {
+    public function setEmail($correo) {
         $this->email = $correo;
 
         return $this;
@@ -209,11 +198,10 @@ class Persona
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
-    
+
     /**
      * Get direccion
      * 
@@ -222,7 +210,7 @@ class Persona
     public function getDireccion() {
         return $this->direccion;
     }
-    
+
     /**
      * Set direccion
      * 
@@ -233,7 +221,7 @@ class Persona
         $this->direccion = $direccion;
         return $this;
     }
-    
+
     /**
      * Get telefono
      * 
@@ -242,7 +230,7 @@ class Persona
     public function getTelefonos() {
         return $this->telefonos;
     }
-    
+
     /**
      * Set telefono
      * 
@@ -253,11 +241,11 @@ class Persona
         $this->telefonos = $telefono;
         return $this;
     }
-    
+
     public function __toString() {
-        return $this->getNombre().' '.$this->getApellido();
+        return $this->getNombre() . ' ' . $this->getApellido();
     }
-    
+
     public function esRutValido(ExecutionContext $context) {
         $rut = $this->getRut();
         $r = strtoupper(str_replace(array(".", "-"), "", $rut));
@@ -279,11 +267,11 @@ class Persona
         if ($dv == 11) {
             $dv = '0';
         }
-        
+
         if ($dv != $sub_dv) {
             $context->addViolationAtSubPath($rut, 'El rut ingresado no es valido', array(), null);
             return;
         }
     }
-    
+
 }

@@ -5,12 +5,13 @@ namespace Oxigeno\ExtranetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Oxigeno\ExtranetBundle\Entity\Persona;
+use Oxigeno\ExtranetBundle\Entity\FichaMedica;
 
 /**
  * Paciente
  *
  * @ORM\Table(name="paciente")
- * @ORM\Entity(repositoryClass="Oxigeno\ExtranetBundle\Entity\PacienteRepository")
+ * @ORM\Entity(repositoryClass="Oxigeno\ExtranetBundle\Entity\Repository\PacienteRepository")
  */
 class Paciente
 {
@@ -40,6 +41,14 @@ class Paciente
      */
     private $persona;
     
+    /**
+     * @var Oxigeno\ExtranetBundle\Entity\FichaMedica
+     * 
+     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\FichaMedica", mappedBy="paciente")
+     */
+    private $ficha_medica;
+
+
     public function __construct() {
         $this->persona = new Persona();
         $this->fecha_ingreso = new \DateTime('now');
@@ -84,7 +93,7 @@ class Paciente
      * 
      * @return Oxigeno\ExtranetBundle\Entity\Persona
      */
-    function getPersona() {
+    public function getPersona() {
         return $this->persona;
     }
     
@@ -94,9 +103,30 @@ class Paciente
      * @param \Oxigeno\ExtranetBundle\Entity\Persona $persona
      * @return \Oxigeno\ExtranetBundle\Entity\Paciente
      */
-    function setPersona(Persona $persona) {
+    public function setPersona(Persona $persona) {
         $this->persona = $persona;
         return $this;
     }
+    
+    /**
+     * Set ficha_medica
+     * 
+     * @return Oxigeno\ExtranetBundle\Entity\FichaMedica
+     */
+    public function getFichaMedica() {
+        return $this->ficha_medica;
+    }
+    
+    /**
+     * Get ficha_medica
+     * 
+     * @param \Oxigeno\ExtranetBundle\Entity\Oxigeno\ExtranetBundle\Entity\FichaMedica $ficha_medica
+     * @return \Oxigeno\ExtranetBundle\Entity\Paciente
+     */
+    public function setFichaMedica(Oxigeno\ExtranetBundle\Entity\FichaMedica $ficha_medica) {
+        $this->ficha_medica = $ficha_medica;
+        return $this;
+    }
+    
     
 }
