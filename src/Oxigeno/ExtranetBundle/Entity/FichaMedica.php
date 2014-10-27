@@ -32,9 +32,13 @@ class FichaMedica {
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Paciente
      * 
-     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Paciente", inversedBy="ficha_medica")
+     
      */
     private $paciente;
+    
+    public function __toString() {
+        return $this->getDiagnostico();
+    }
 
     /**
      * Get id
@@ -81,7 +85,7 @@ class FichaMedica {
      * @param Oxigeno\ExtranetBundle\Entity\Paciente $paciente
      * @return \Oxigeno\ExtranetBundle\Entity\FichaMedica
      */
-    public function setPaciente($paciente) {
+    public function setPaciente(Paciente $paciente) {
         $this->paciente = $paciente;
         return $this;
     }

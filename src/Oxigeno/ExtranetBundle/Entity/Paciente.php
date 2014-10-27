@@ -37,20 +37,21 @@ class Paciente
      * 
      * @Assert\NotNull()
      * @Assert\Type(type="Oxigeno\ExtranetBundle\Entity\Persona")
-     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona", cascade={"persist", "merge"})
+     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Persona", cascade={"persist"})
      */
     private $persona;
     
     /**
      * @var Oxigeno\ExtranetBundle\Entity\FichaMedica
      * 
-     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\FichaMedica", mappedBy="paciente")
+     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\FichaMedica", cascade={"persist"})
      */
     private $ficha_medica;
 
 
     public function __construct() {
         $this->persona = new Persona();
+        $this->ficha_medica = new FichaMedica();
         $this->fecha_ingreso = new \DateTime('now');
     }
 
@@ -120,10 +121,10 @@ class Paciente
     /**
      * Get ficha_medica
      * 
-     * @param \Oxigeno\ExtranetBundle\Entity\Oxigeno\ExtranetBundle\Entity\FichaMedica $ficha_medica
+     * @param \Oxigeno\ExtranetBundle\Entity\FichaMedica $ficha_medica
      * @return \Oxigeno\ExtranetBundle\Entity\Paciente
      */
-    public function setFichaMedica(Oxigeno\ExtranetBundle\Entity\FichaMedica $ficha_medica) {
+    public function setFichaMedica(FichaMedica $ficha_medica) {
         $this->ficha_medica = $ficha_medica;
         return $this;
     }

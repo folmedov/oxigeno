@@ -36,11 +36,14 @@ class DefaultController extends Controller {
                 $direccion = $persona->getDireccion();
                 $direccion->setPersona($persona);
                 
-                $telefono1 = $persona->getTelefonos()->get('telefono_personal');
+                $telefono1 = $persona->getTelefonos()->get(0);
                 $telefono1->setPersona($persona);
                 
-                $telefono2 = $persona->getTelefonos()->get('telefono_de_contacto');
+                $telefono2 = $persona->getTelefonos()->get(1);
                 $telefono2->setPersona($persona);
+                
+                $ficha_medica = $paciente->getFichaMedica();
+                $paciente->setFichaMedica($ficha_medica);
                 
                 $em->persist($paciente);
                 $em->flush();
