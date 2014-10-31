@@ -26,7 +26,11 @@ class UsuarioType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('nombre')
-                ->add('password', 'password')
+                ->add('password', 'repeated', array(
+                    'type' => 'password', 
+                    'first_options' => array('label' => 'Contraseña'), 
+                    'second_options' => array('label' => 'Repita su contraseña'), 
+                ))
                 ->add('email')
                 ->add('persona', new PersonaType())
             ;

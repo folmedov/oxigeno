@@ -56,7 +56,7 @@ class Basico implements FixtureInterface, ContainerAwareInterface
         $telefono1->setPersona($persona);
           
         $telefono2 = $persona->getTelefonos()->get(1);
-        $telefono2->setNumero('+56987790438');
+        $telefono2->setNumero('+56322319059');
         $telefono2->setPersona($persona);
         
         $paciente->setPersona($persona);

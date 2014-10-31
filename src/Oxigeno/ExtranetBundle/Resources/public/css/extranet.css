@@ -17,17 +17,15 @@ and open the template in the editor.
 
 .logo{
     float: left;
-    padding-left: 5%;
 }
 
-.logo, .logo:link, .logo:visited, .logo:active, .logo:hover {
+/*.logo, .logo:link, .logo:visited, .logo:active, .logo:hover {
     text-decoration: none;
     color: black;
-}
+}*/
 
 .seccion-menu-usuario {
     float: right;
-    padding-right: 5%;
 }
 
 .seccion-menu-usuario ul {
@@ -45,8 +43,7 @@ and open the template in the editor.
    ===========================================================================*/
 #contenedor-central {
     position: relative;
-    margin: 0 5% 0 5%;
-    background-color: white;
+    width: 100%;
 }
 
 nav, article {
@@ -57,8 +54,16 @@ nav, article {
 nav {
     height: 100%;
     background-color: gainsboro;
+    width: 25%;
 }
 
+article {
+    width: 70%;
+}
+
+/* =============================================================================
+    Menu de navegacion izquierdo
+   ===========================================================================*/
 .menu-lateral {
     border-bottom: gray solid 1px;
     border-left: gray solid 1px;
@@ -77,9 +82,7 @@ nav {
 /* =============================================================================
     Formularios
    ===========================================================================*/
-
 .formulario-nuevo-paciente div {
-    width: 400px;
 }
 
 .formulario-nuevo-paciente fieldset {
@@ -116,6 +119,10 @@ nav {
     overflow: hidden;
 }
 
+.formulario-nuevo-paciente textarea {
+    display: inline-block;
+    width: 55%;
+}
 
 /* =============================================================================
     Sección comun del extranet

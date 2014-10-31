@@ -11,18 +11,15 @@ namespace Oxigeno\ExtranetBundle\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Description of VerPacienteType
+ * Description of VerFichaMedica
  *
  * @author francisco
  */
-class VerPacienteType extends PacienteType {
+class VerFichaMedicaType extends FichaMedicaType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('fecha_ingreso', 'date', array(
-                        'disabled' => true
-                    ))
-                ->add('persona', new VerPersonaType())
-                ->add('ficha_medica', new VerFichaMedicaType())
+        $builder->add('diagnostico', null, array('disabled' => true))
             ;
     }
+    
 }

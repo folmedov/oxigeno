@@ -7,3 +7,11 @@ login_login_check:
 
 login_logout:
     pattern:  /logout
+
+login_solicitar_restablecer_password:
+    pattern:  /solicitar-restablecer-password
+    defaults: { _controller: LoginBundle:Default:solicitarRestablecerPassword }
+    
+login_restablecer_password:
+    pattern:  /restablecer-password
+    defaults: { _controller: LoginBundle:Default:restablecerPassword }

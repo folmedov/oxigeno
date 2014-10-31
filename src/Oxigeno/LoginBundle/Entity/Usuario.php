@@ -10,7 +10,7 @@ use Oxigeno\ExtranetBundle\Entity\Persona;
  * Usuario
  *
  * @ORM\Table(name="usuario")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Oxigeno\LoginBundle\Entity\Repository\UsuarioRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"Usuario" = "Usuario", "Administrador" = "Administrador"})

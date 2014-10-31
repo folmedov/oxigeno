@@ -8,10 +8,36 @@ and open the template in the editor.
     Author     : francisco
 */
 
+header {
+    position: relative;
+    width: 100%;
+    border-bottom: grey solid thin;
+}
+
+header div {
+    max-width: 880px;
+    margin: auto;
+}
+
+article {
+    width: 100%;
+}
+
+#contenido {
+    max-width: 880px;
+    margin: auto;
+    padding-bottom: 2%;
+}
+
 footer {
     clear: both;
     width: 100%;
-    position: absolute;
-    bottom: 5%;
     text-align: center;
+    //border-top: gainsboro solid thin;
+}
+
+footer div {
+    max-width: 880px;
+    margin: auto;
+    padding: 25px 0;
 }
