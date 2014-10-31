@@ -21,4 +21,4 @@ security:
             entity: { class: Oxigeno\LoginBundle\Entity\Administrador, property: nombre }
     
     encoders:
-        Oxigeno\LoginBundle\Entity\Administrador: { algorithm: plaintext }
+        Oxigeno\LoginBundle\Entity\Administrador: { algorithm: sha512 }

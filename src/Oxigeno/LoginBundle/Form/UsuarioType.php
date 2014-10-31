@@ -11,6 +11,10 @@ namespace Oxigeno\LoginBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+//use Symfony\Component\Form\CallbackValidator;
+//use Symfony\Component\Form\FormInterface;
+//use Symfony\Component\Form\FormError;
+
 use Oxigeno\ExtranetBundle\Form\PersonaType;
 
 /**
@@ -28,11 +32,14 @@ class UsuarioType extends AbstractType {
         $builder->add('nombre')
                 ->add('password', 'repeated', array(
                     'type' => 'password', 
+                    'required' => false,
                     'first_options' => array('label' => 'Contraseña'), 
                     'second_options' => array('label' => 'Repita su contraseña'), 
                 ))
                 ->add('email')
-                ->add('persona', new PersonaType())
+                ->add('persona', new PersonaType(), array(
+                    'required' => true
+                ))
             ;
     }
     

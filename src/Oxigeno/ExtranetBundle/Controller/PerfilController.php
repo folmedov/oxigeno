@@ -31,10 +31,11 @@ class PerfilController extends Controller {
         $formulario = $this->createForm(new UsuarioType(), $usuario);
         
         if ($peticion->getMethod() == 'POST') {
+            $passwordOriginal = $formulario->getData()->getPassword();
+            
             $formulario->bind($peticion);
             $em = $this->getDoctrine()->getManager();
             
-//            $persona = $formulario->getData()->getPersona();
             $rut = $formulario->getData()->getPersona()->getRut();
             $persona = $em->getRepository('ExtranetBundle:Persona')->findOneByRut($rut);
                 
@@ -43,6 +44,14 @@ class PerfilController extends Controller {
             }
             
             if ($formulario->isValid()) {
+                if ($usuario->getPassword() == null) {
+                    $usuario->setPassword($passwordOriginal);
+                } else {
+                    $encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+                    $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+                    $usuario->setPassword($passwordCodificado);
+                }
+                
                 $em->persist($usuario);
                 $em->flush();
                 

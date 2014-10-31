@@ -41,7 +41,9 @@
         
         <fieldset>
             <legend>Datos de Usuario</legend>
-            {{ form_widget(formulario) }}
+            {{ form_row(formulario.nombre) }}
+            {{ form_row(formulario.password, {'attr': { 'required': 'required' } }) }}
+            {{ form_row(formulario.email) }}
         </fieldset>
         
         {{ form_rest(formulario) }}

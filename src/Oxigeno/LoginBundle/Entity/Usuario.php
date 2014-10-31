@@ -3,6 +3,7 @@
 namespace Oxigeno\LoginBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Oxigeno\ExtranetBundle\Entity\Persona;
 
@@ -13,7 +14,7 @@ use Oxigeno\ExtranetBundle\Entity\Persona;
  * @ORM\Entity(repositoryClass="Oxigeno\LoginBundle\Entity\Repository\UsuarioRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"Usuario" = "Usuario", "Administrador" = "Administrador"})
+ * @ORM\DiscriminatorMap({"usuario" = "Usuario", "administrador" = "Administrador"})
  */
 class Usuario implements UserInterface
 {
@@ -36,7 +37,7 @@ class Usuario implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=50)
+     * @ORM\Column(name="password", type="string", length=100)
      */
     private $password;
 

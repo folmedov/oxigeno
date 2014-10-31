@@ -9,6 +9,7 @@
 namespace Oxigeno\LoginBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * Description of TokenRepository
@@ -29,6 +30,12 @@ class TokenRepository extends EntityRepository {
             'token' => base64_decode($token_codificado),
         ));
         
-        return $consulta->getSingleResult();
+        try {
+            return $consulta->getSingleResult();
+        } catch (NoResultException $ex) {
+            return null;
+        }
+        
+        
     }
 }
