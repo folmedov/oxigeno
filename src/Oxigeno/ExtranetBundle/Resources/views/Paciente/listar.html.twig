@@ -4,10 +4,6 @@
 {% block id 'listar_pacientes' %}
     
 {% block article %}
-    {% for mensaje in app.session.flashbag.get('info') %}
-        <p>{{ mensaje }}</p>
-    {% endfor %}
-
     <ul><li><a href="{{ path('extranet_paciente_nuevo') }}">Nuevo Paciente</a></li></ul>
     
     <h2>Pacientes</h2>

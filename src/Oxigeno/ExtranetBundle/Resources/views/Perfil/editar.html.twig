@@ -6,7 +6,7 @@
 {% block article %}
     <h2>Ajustes de Cuenta</h2>
     
-    <form class="formulario-nuevo-paciente" action="{{ path('extranet_perfil_editar') }}" method="post" {{ form_enctype(formulario) }}>
+    <form class="formulario-paciente" action="{{ path('extranet_perfil_editar') }}" method="post" {{ form_enctype(formulario) }}>
         {{ form_errors(formulario) }}
         
         <fieldset>

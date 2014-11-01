@@ -3,8 +3,10 @@
 namespace Oxigeno\ExtranetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Oxigeno\ExtranetBundle\Entity\Paciente;
 use Oxigeno\ExtranetBundle\Entity\Util;
+use Oxigeno\ExtranetBundle\Entity\Fotografia;
 use Oxigeno\ExtranetBundle\Form\PacienteType;
 use Oxigeno\ExtranetBundle\Form\VerPacienteType;
 
@@ -45,6 +47,9 @@ class DefaultController extends Controller {
                 $ficha_medica = $paciente->getFichaMedica();
                 $paciente->setFichaMedica($ficha_medica);
                 
+                $fotografia = $persona->getFotografia();
+                $fotografia->upload();
+                
                 $em->persist($paciente);
                 $em->flush();
                 
@@ -56,6 +61,7 @@ class DefaultController extends Controller {
 
         return $this->render('ExtranetBundle:Paciente:nuevo.html.twig', array(
                     'formulario' => $formulario->createView(),
+                    'avatar' => $paciente->getPersona()->getFotografia()->getPath(),
         ));
     }
     
@@ -64,6 +70,8 @@ class DefaultController extends Controller {
         $peticion = $this->getRequest();
         
         $paciente = $em->getRepository('ExtranetBundle:Paciente')->findOneById($id);
+//        $fotografia = $paciente->getPersona()->getFotografia();
+//        print 'AQUI! '.$fotografia->getPath();
         
         $formulario = $this->createForm(new PacienteType(), $paciente);
         
@@ -77,17 +85,23 @@ class DefaultController extends Controller {
                     $paciente->getPersona()->setRut($rut);
                 }
                 
+                $fotografia = $formulario->getData()->getPersona()->getFotografia();
+                if ($fotografia->getFile()) {
+                    $fotografia->upload();
+                }
+                
                 $em->flush();
                 
-                $peticion->getSession()->setFlash('info', Util::MNS_PACIENTE_EDITAR);
+                $peticion->getSession()->setFlash('info', Util::MNS_PACIENTE_EDITAR/*.$fotografia->getWebPath()*/);
                 
-                return $this->redirect($this->generateUrl('extranet_paciente_listar'));
+                return $this->redirect($this->generateUrl('extranet_paciente_ver', array('id' => $paciente->getId())));
             }
-        }
+        }        
         
         return $this->render('ExtranetBundle:Paciente:editar.html.twig', array(
                     'formulario' => $formulario->createView(),
                     'paciente' => $paciente->getId(),
+                    'avatar' => $paciente->getPersona()->getFotografia()->getPath(),
         ));
     }
     
@@ -101,6 +115,8 @@ class DefaultController extends Controller {
         return $this->render('ExtranetBundle:Paciente:ver.html.twig', array(
                     'formulario' => $formulario->createView(),
                     'paciente' => $paciente->getId(),
+                    'nomnbre_completo' => $paciente->getPersona(),
+                    'avatar' => $paciente->getPersona()->getFotografia()->getPath(),
         ));
     }
 

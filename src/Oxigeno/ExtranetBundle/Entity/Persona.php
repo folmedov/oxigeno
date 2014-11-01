@@ -7,8 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\ExecutionContext;
+
 use Oxigeno\ExtranetBundle\Entity\Direccion;
 use Oxigeno\ExtranetBundle\Entity\Telefono;
+use Oxigeno\ExtranetBundle\Entity\Fotografia;
 
 /**
  * Persona
@@ -75,6 +77,14 @@ class Persona {
      * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Direccion", mappedBy="persona", cascade={"persist"})
      */
     private $direccion;
+    
+    
+    /**
+     * @var \Oxigeno\ExtranetBundle\Etity\Fotografia
+     * 
+     * @ORM\OneToOne(targetEntity="Oxigeno\ExtranetBundle\Entity\Fotografia", cascade={"persist"})
+     */
+    private $fotografia;
 
     /**
      * @var Telefono
@@ -86,6 +96,7 @@ class Persona {
     public function __construct() {
         $this->direccion = new Direccion();
         $this->telefonos = new ArrayCollection(array(new Telefono(), new Telefono()));
+        $this->setFotografia(new Fotografia());
     }
 
     /**
@@ -241,7 +252,27 @@ class Persona {
         $this->telefonos = $telefono;
         return $this;
     }
-
+    
+    /**
+     * Get Fotografia
+     * 
+     * @return \Oxigeno\ExtranetBundle\Entity\Fotografia
+     */
+    public function getFotografia() {
+        return $this->fotografia;
+    }
+    
+    /**
+     * Set Fotografia
+     * 
+     * @param \Oxigeno\ExtranetBundle\Entity\Fotografia $fotografia
+     * @return \Oxigeno\ExtranetBundle\Entity\Persona
+     */
+    public function setFotografia(Fotografia $fotografia) {
+        $this->fotografia = $fotografia;
+        return $this;
+    }
+    
     public function __toString() {
         return $this->getNombre() . ' ' . $this->getApellido();
     }

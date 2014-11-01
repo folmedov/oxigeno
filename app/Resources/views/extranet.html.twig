@@ -57,8 +57,12 @@
         <article>
             <ul>
                 <li><a href="{{ path('extranet_paciente_listar') }}">Inicio></a></li>
+                
                 {% block breadcrumb %}{% endblock %}
             </ul>
+            {% for mensaje in app.session.flashbag.get('info') %}
+                <p>{{ mensaje }}</p>
+            {% endfor %}
             {% block article %}{% endblock %}
         </article>
         <div id="div-aux"></div>
