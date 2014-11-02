@@ -1,0 +1,7 @@
+parameters:
+#    terapia_kinesiologica.example.class: Oxigeno\Extranet\Terapia\KinesiologicaBundle\Example
+
+services:
+#    terapia_kinesiologica.example:
+#        class: %terapia_kinesiologica.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

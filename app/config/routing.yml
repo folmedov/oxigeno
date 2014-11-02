@@ -1,10 +1,23 @@
-login:
-    resource: "@LoginBundle/Resources/config/routing.yml"
+terapia_kinesiologica:
+    resource: "@TerapiaKinesiologicaBundle/Resources/config/routing.yml"
     prefix:   /
 
-extranet:
-    resource: "@ExtranetBundle/Resources/config/routing.yml"
+secretaria:
+    resource: "@SecretariaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+seguridad:
+    resource: "@SeguridadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+terapia_hiperbarica:
+    resource: "@TerapiaHiperbaricaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+paciente:
+    resource: "@PacienteBundle/Resources/config/routing.yml"
     prefix:   /extranet
+
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******

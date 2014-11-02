@@ -1,0 +1,19 @@
+paciente_listar:
+    pattern:  /paciente/listar
+    defaults: { _controller: PacienteBundle:Paciente:listar }
+
+paciente_nuevo:
+    pattern:  /paciente/nuevo
+    defaults: { _controller: PacienteBundle:Paciente:nuevo }
+
+paciente_editar:
+    pattern:  /paciente/editar/{id}
+    defaults: { _controller: PacienteBundle:Paciente:editar }
+
+paciente_ver:
+    pattern:  /paciente/ver/{id}
+    defaults: { _controller: PacienteBundle:Paciente:ver }
+
+perfil_editar:
+    pattern:  /perfil/editar
+    defaults: { _controller: PacienteBundle:Perfil:editar }

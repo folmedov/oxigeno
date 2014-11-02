@@ -1,0 +1,7 @@
+parameters:
+#    secretaria.example.class: Oxigeno\Extranet\SecretariaBundle\Example
+
+services:
+#    secretaria.example:
+#        class: %secretaria.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

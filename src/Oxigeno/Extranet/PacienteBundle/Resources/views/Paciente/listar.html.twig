@@ -1,0 +1,37 @@
+{% extends '::extranet.html.twig' %}
+
+{% block title %}Lista de pacientes{% endblock %}
+{% block id 'listar_pacientes' %}
+    
+{% block article %}
+    <ul><li><a href="{{ path('paciente_nuevo') }}">Nuevo Paciente</a></li></ul>
+    
+    <h2>Pacientes</h2>
+    
+    <div class="formulario-paciente">
+        <table class="grilla-pacientes">
+            <thead>
+                <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paciente in pacientes %}
+                    <tr>
+                        <td>{{ paciente.persona.rut }}</td>
+                        <td>{{ paciente.persona.nombre }}</td>
+                        <td>{{ paciente.persona.apellido }}</td>                
+                        <td>
+                            <a href="{{ path('paciente_ver', { 'id': paciente.id }) }}">Ver</a>
+                            <!--<a href="{{ path('paciente_editar', { 'id': paciente.id }) }}">Editar</a>-->
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>        
+    
+{% endblock %}    

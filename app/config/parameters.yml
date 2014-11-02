@@ -1,14 +1,14 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     localhost
-    database_port:     '3306'
-    database_name:     oxigeno
-    database_user:     oxigeno
-    database_password: oxigeno
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       null
-    mailer_password:   null
-    locale:            en
-    secret:            754a968ac9410b2c408ae888a1b4765f3
-    database_path:     null
+    database_driver:    pdo_mysql
+    database_host:      localhost
+    database_port:      '3306'
+    database_name:      oxigeno
+    database_user:      oxigeno
+    database_password:  oxigeno
+    mailer_transport:   smtp
+    mailer_host:        127.0.0.1
+    mailer_user:        null
+    mailer_password:    null
+    locale:             en
+    secret:             da7848c44ccc47e26b59ee6e7d8d8943
+    database_path:      null

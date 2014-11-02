@@ -5,8 +5,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Oxigeno\LoginBundle\Entity\Administrador;
-use Oxigeno\ExtranetBundle\Entity\Paciente;
+use Oxigeno\Extranet\SeguridadBundle\Entity\Administrador;
+use Oxigeno\Extranet\PacienteBundle\Entity\Paciente;
 
 class Basico implements FixtureInterface, ContainerAwareInterface
 {

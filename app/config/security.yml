@@ -5,12 +5,12 @@ security:
             provider:  administrador
             anonymous: ~
             form_login: 
-                login_path: login_login
-                check_path: login_login_check
-                default_target_path: extranet_paciente_listar
+                login_path: seguridad_login
+                check_path: seguridad_login_check
+                default_target_path: paciente_listar
             logout:
-                path:       login_logout
-                target:     login_login
+                path:       seguridad_logout
+                target:     seguridad_login
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -18,7 +18,7 @@ security:
         
     providers:
         administrador:
-            entity: { class: Oxigeno\LoginBundle\Entity\Administrador, property: nombre }
+            entity: { class: Oxigeno\Extranet\SeguridadBundle\Entity\Administrador, property: nombre }
     
     encoders:
-        Oxigeno\LoginBundle\Entity\Administrador: { algorithm: sha512 }
+        Oxigeno\Extranet\SeguridadBundle\Entity\Administrador: { algorithm: sha512 }

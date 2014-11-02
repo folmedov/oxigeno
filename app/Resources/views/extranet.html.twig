@@ -1,18 +1,18 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-    <link href="{{ asset('bundles/login/css/normalizar.css') }}" 
+    <link href="{{ asset('bundles/seguridad/css/normalizar.css') }}" 
           rel="stylesheet" type="text/css" />
-    <link href="{{ asset('bundles/login/css/comun.css') }}" 
+    <link href="{{ asset('bundles/seguridad/css/comun.css') }}" 
           rel="stylesheet" type="text/css" />
-    <link href="{{ asset('bundles/extranet/css/extranet.css') }}" 
+    <link href="{{ asset('bundles/paciente/css/extranet.css') }}" 
           rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% set usuario = app.user %}
 
 {% block logo_header %}
-    <h2><a class="logo" href="{{ path('extranet_paciente_listar') }}">OXIGENO</a></h2>
+    <h2><a class="logo" href="{{ path('paciente_listar') }}">OXIGENO</a></h2>
 {% endblock %}
 
 {% block menu_header %}
@@ -26,16 +26,16 @@
                 {% endif %}
             </li>
             <li>
-                <a href="{{ path('extranet_perfil_editar') }}">
+                <a href="{{ path('perfil_editar') }}">
                     <img class="iconos" 
-                         src="{{ asset('bundles/extranet/images/icons/gemicon/32x32/row-3/12.png') }}" 
+                         src="{{ asset('bundles/paciente/images/icons/gemicon/32x32/row-3/12.png') }}" 
                          title="AJUSTES DE CUENTA" />
                 </a>
             </li>
             <li>
-                <a href="{{ path('login_logout') }}">
+                <a href="{{ path('seguridad_logout') }}">
                     <img class="iconos" 
-                         src="{{ asset('bundles/extranet/images/icons/flaticon/door9.png') }}" 
+                         src="{{ asset('bundles/paciente/images/icons/flaticon/door9.png') }}" 
                          title="CERRAR SESION" />
                 </a>
             </li>
@@ -49,14 +49,14 @@
         <nav>                
             <ul class="menu-lateral">
                 <li>MENU PRINCIPAL</li>
-                <li><a href="{{ path('extranet_paciente_listar') }}">AREA PACIENTES</a></li>
+                <li><a href="{{ path('paciente_listar') }}">AREA PACIENTES</a></li>
                 <li><a href="#">ESTADISTICO</a></li>
             </ul>
         </nav>
 
         <article>
             <ul>
-                <li><a href="{{ path('extranet_paciente_listar') }}">Inicio></a></li>
+                <li><a href="{{ path('paciente_listar') }}">Inicio></a></li>
                 
                 {% block breadcrumb %}{% endblock %}
             </ul>

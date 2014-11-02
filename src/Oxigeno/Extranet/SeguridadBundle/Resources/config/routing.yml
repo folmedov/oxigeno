@@ -1,0 +1,17 @@
+seguridad_login:
+    pattern:  /login
+    defaults: { _controller: SeguridadBundle:Seguridad:login }
+
+seguridad_login_check:
+    pattern:  /login_check
+
+seguridad_logout:
+    pattern:  /logout
+
+seguridad_solicitar_restablecer_password:
+    pattern:  /solicitar-restablecer-password
+    defaults: { _controller: SeguridadBundle:Seguridad:solicitarRestablecerPassword }
+    
+seguridad_restablecer_password:
+    pattern:  /restablecer-password
+    defaults: { _controller: SeguridadBundle:Seguridad:restablecerPassword }

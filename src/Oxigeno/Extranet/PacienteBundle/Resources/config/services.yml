@@ -1,0 +1,7 @@
+parameters:
+#    paciente.example.class: Oxigeno\Extranet\PacienteBundle\Example
+
+services:
+#    paciente.example:
+#        class: %paciente.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

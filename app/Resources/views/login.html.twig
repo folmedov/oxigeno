@@ -1,14 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-    <link href="{{ asset('bundles/login/css/normalizar.css') }}" 
+    <link href="{{ asset('bundles/seguridad/css/normalizar.css') }}" 
           rel="stylesheet" type="text/css" />
-    <link href="{{ asset('bundles/login/css/comun.css') }}" 
+    <link href="{{ asset('bundles/seguridad/css/comun.css') }}" 
           rel="stylesheet" type="text/css" />
-    <link href="{{ asset('bundles/login/css/login.css') }}" 
+    <link href="{{ asset('bundles/seguridad/css/login.css') }}" 
           rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block logo_header %}
-    <h2><a href="{{ path('login_login') }}">OXIGENO</a></h2>
+    <h2><a href="{{ path('seguridad_login') }}">OXIGENO</a></h2>
 {% endblock %}

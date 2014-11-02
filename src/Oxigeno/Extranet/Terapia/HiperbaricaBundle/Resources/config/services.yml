@@ -1,0 +1,7 @@
+parameters:
+#    terapia_hiperbarica.example.class: Oxigeno\Extranet\Terapia\HiperbaricaBundle\Example
+
+services:
+#    terapia_hiperbarica.example:
+#        class: %terapia_hiperbarica.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
