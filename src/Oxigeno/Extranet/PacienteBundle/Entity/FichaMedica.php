@@ -114,7 +114,7 @@ class FichaMedica {
     /**
      * Set Terapias
      * 
-     * @param Doctrine\Common\Collections\ArrayCollection; $terapia
+     * @param Doctrine\Common\Collections\ArrayCollection $terapias
      * @return \Oxigeno\Extranet\PacienteBundle\Entity\FichaMedica
      */
     public function setTerapias(ArrayCollection $terapias) {
