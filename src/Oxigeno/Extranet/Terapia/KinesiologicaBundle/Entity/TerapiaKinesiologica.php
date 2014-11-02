@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxigeno\ExtranetBundle\Entity;
+namespace Oxigeno\Extranet\Terapia\HiperbaricaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
