@@ -13,27 +13,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Description of FichaMedicaType
+ * Description of TerapiaType
  *
  * @author francisco
  */
-class FichaMedicaType extends AbstractType {
+class TerapiaType extends AbstractType {
     
     public function getName() {
-        return 'oxigeno_extranetbundle_fichamedicatype';
+        return 'oxigeno_extranetbundle_terapiatype';
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('diagnostico')
-                ->add('terapias', 'collection', array(
-                    'type' => new TerapiaType(),
-                ));
+        $builder->add('fecha_inicio', 'date')
             ;
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Oxigeno\ExtranetBundle\Entity\FichaMedica',
+            'data_class' => 'Oxigeno\ExtranetBundle\Entity\Terapia',
         ));
     }
 }

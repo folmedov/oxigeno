@@ -8,6 +8,70 @@ and open the template in the editor.
     Author     : francisco
 */
 
+/* =============================================================================
+    Sección del formulario del login
+   ===========================================================================*/
+.login-inicio-sesion {
+    background-color: #FCFCFC;
+    border: #EAEAEA thin solid;
+    margin-top: 3%;
+}
+
+.login-inicio-sesion form {
+    width: 50%;
+    margin: auto;
+    padding: 1% 0 4% 0;
+}
+
+.login-inicio-sesion form fieldset div {
+    padding: .5% 0;
+}
+
+.login-inicio-sesion form div {    
+    padding: .5% 0;
+}
+
+.login-inicio-sesion form label {
+    display: inline-block;
+    width: 30%;
+}
+
+.login-inicio-sesion form label[for="mantenme-conectado"] {
+    display: inline-block;
+    width: 70%;
+    margin: auto;
+}
+
+.login-inicio-sesion form input[type="text"] {
+    display: inline-block;
+    width: 40%;
+}
+
+.login-inicio-sesion form input[type="password"] {
+    display: inline-block;
+    width: 40%;
+}
+
+.login-alinear-centro-1 {
+    margin-left: 15%;
+}
+
+.login-alinear-centro-2 {
+    margin-top: 5%;
+    margin-left: 15%;
+}
+
+/* =============================================================================
+    Sección del header
+   ===========================================================================*/
+
+
+/* =============================================================================
+    Sección del header
+   ===========================================================================*/
+
+
+
 /*
 .button_example{
     width: 80%;

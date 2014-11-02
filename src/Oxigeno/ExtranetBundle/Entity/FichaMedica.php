@@ -3,6 +3,8 @@
 namespace Oxigeno\ExtranetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Oxigeno\ExtranetBundle\Entity\Paciente;
 
 /**
@@ -32,10 +34,21 @@ class FichaMedica {
     /**
      * @var Oxigeno\ExtranetBundle\Entity\Paciente
      * 
-     
      */
     private $paciente;
     
+    /**
+     * @var Doctrine\Common\Collections\ArrayCollection;
+     * 
+     * @ORM\OneToMany(targetEntity="Oxigeno\ExtranetBundle\Entity\Terapia", mappedBy="ficha_medica")
+     */
+    private $terapias;
+    
+    
+    public function __construct() {
+        $this->terapias = new ArrayCollection();
+    }
+
     public function __toString() {
         return $this->getDiagnostico();
     }
@@ -89,7 +102,26 @@ class FichaMedica {
         $this->paciente = $paciente;
         return $this;
     }
-
+    
+    /**
+     * Get Teraias
+     * 
+     * @return Doctrine\Common\Collections\ArrayCollection;
+     */
+    public function getTerapias() {
+        return $this->terapias;
+    }
+    
+    /**
+     * Set Terapias
+     * 
+     * @param Doctrine\Common\Collections\ArrayCollection; $terapia
+     * @return \Oxigeno\ExtranetBundle\Entity\FichaMedica
+     */
+    public function setTerapias(ArrayCollection $terapias) {
+        $this->terapias = $terapias;
+        return $this;
+    }
 
 
 }
