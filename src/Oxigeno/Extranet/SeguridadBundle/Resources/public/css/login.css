@@ -62,9 +62,13 @@ and open the template in the editor.
 }
 
 /* =============================================================================
-    Sección del header
+    Mensajes de error
    ===========================================================================*/
-
+.div-error {
+    margin-top: 5%;
+    color: orangered;
+    font-weight: bold;
+}
 
 /* =============================================================================
     Sección del header

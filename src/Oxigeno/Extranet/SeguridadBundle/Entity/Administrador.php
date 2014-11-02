@@ -19,7 +19,7 @@ class Administrador extends Usuario {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * Get id

@@ -42,12 +42,14 @@ class Token
      * 
      * @ORM\Column(name="fecha_validez", type="datetime")
      */
-    private $fecha_validez;
+    private $fecha_vencimiento;
+    
+    private $tiempo_validez = '1';
     
     public function __construct() {
         $this->token = Util::generarContrasena(32);
         $this->fecha_creacion = new \DateTime('now');
-        $this->fecha_validez = new \DateTime('now + 1 hour');
+        $this->fecha_vencimiento = new \DateTime('now + '.$this->tiempo_validez.' hour');
     }
 
 
@@ -113,7 +115,7 @@ class Token
      * @return \Datetime
      */
     public function getFechaValidez() {
-        return $this->fecha_validez;
+        return $this->fecha_vencimiento;
     }
     
     /**
@@ -123,11 +125,11 @@ class Token
      * @return \Oxigeno\Extranet\SeguridadBundle\Entity\Token
      */
     public function setFechaValidez(\Datetime $fecha_validez) {
-        $this->fecha_validez = $fecha_validez;
+        $this->fecha_vencimiento = $fecha_validez;
         return $this;
     }
     
-    public function isValido() {
+    public function isValid() {
         if ($this->getFechaValidez() > new \DateTime('now')) {
             return true;
         } else {

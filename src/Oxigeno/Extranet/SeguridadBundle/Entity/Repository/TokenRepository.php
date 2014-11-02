@@ -35,7 +35,26 @@ class TokenRepository extends EntityRepository {
         } catch (NoResultException $ex) {
             return null;
         }
+    }
+    
+    public function findByUsuario($usuario_id) {
+        $em = $this->getEntityManager();
         
+        $dql =    'SELECT   t '
+                . 'FROM     SeguridadBundle:Token t '
+                . 'JOIN     SeguridadBundle:ResetPassword rp '
+                . 'JOIN     rp.usuario u '
+                . 'WHERE    u.id = :usuario_id'
+            ;
         
+        $consulta = $em->createQuery($dql)->setParameters(array(
+            'usuario_id' => $usuario_id,
+        ));
+        
+        try {
+            return $consulta->getResult();
+        } catch (Exception $ex) {
+            return null;
+        }
     }
 }

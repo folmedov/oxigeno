@@ -12,30 +12,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Oxigeno\Extranet\PacienteBundle\Form\PersonaType;
-
 /**
- * Description of UsuarioType
+ * Description of RecuperarPasswordType
  *
  * @author francisco
  */
-class UsuarioType extends AbstractType {
+class RecuperarPasswordType extends AbstractType {
     
     public function getName() {
-        return 'oxigeno_seguridadbundle_usuariotype';
+        return 'oxigeno_seguridadbundle_recuperarpasswordtype';
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('nombre')
-                ->add('password', 'repeated', array(
+        $builder->add('password', 'repeated', array(
                     'type' => 'password', 
-                    'required' => false,
+                    'required' => true,
                     'first_options' => array('label' => 'Contraseña'), 
                     'second_options' => array('label' => 'Repita su contraseña'), 
-                ))
-                ->add('email')
-                ->add('persona', new PersonaType(), array(
-                    'required' => true
                 ))
             ;
     }

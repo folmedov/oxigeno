@@ -6,11 +6,6 @@
 {% block body %}
     <article>
         <section id="contenido">
-            <div>
-                {% if error %}
-                    <div>{{ error.message }}</div>
-                {% endif %}
-            </div>
             <div class="login-inicio-sesion">
                 <form action="{{ path('seguridad_login_check') }}" method="post">
                     <h3>Bienvenido al área de acceso de Oxígeno</h3>
@@ -24,6 +19,7 @@
                             <input type="password" id="password" name="_password" required="required" />
                         </div>
                     </fieldset>
+                        
                     <div class="login-alinear-centro-1">
                         <div>
                             <input type="checkbox" id="mantenme-conectado"/>
@@ -35,6 +31,12 @@
                         <div class="login-alinear-centro-2">
                             <input class="boton" type="submit" name="login" value="Acceder" />
                         </div>
+                    </div>
+                        
+                    <div class="div-error">
+                        {% if error %}
+                            <div>{{ error.message }}</div>
+                        {% endif %}
                     </div>
                 </form>
             </div>

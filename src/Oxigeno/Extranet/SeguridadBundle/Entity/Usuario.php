@@ -4,6 +4,8 @@ namespace Oxigeno\Extranet\SeguridadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Oxigeno\Extranet\PacienteBundle\Entity\Persona;
 
 /**
@@ -24,7 +26,7 @@ class Usuario implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -60,7 +62,18 @@ class Usuario implements UserInterface
      * @ORM\ManyToOne(targetEntity="Oxigeno\Extranet\PacienteBundle\Entity\Persona", cascade={"persist"})
      */
     private $persona;
-
+    
+    /**
+     * @var ArrayCollection
+     * 
+     * @ORM\OneToMany(targetEntity="Oxigeno\Extranet\SeguridadBundle\Entity\ResetPassword", 
+     *                mappedBy="usuario")
+     */
+    private $solicitudes_reset_password;
+    
+    public function __construct() {
+        $this->solicitudes_reset_password = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -183,7 +196,26 @@ class Usuario implements UserInterface
         $this->persona = $persona;
         return $this;
     }
-
+    
+    /**
+     * Get Solicitudes Reset Password
+     * 
+     * @return ArrayCollection
+     */
+    public function getSolicitudesResetPassword() {
+        return $this->solicitudes_reset_password;
+    }
+    
+    /**
+     * Set Solicitudes Reset Password
+     * 
+     * @param ArrayCollection $solicitudes_reset_password
+     * @return \Oxigeno\Extranet\SeguridadBundle\Entity\Usuario
+     */
+    public function setSolicitudesResetPassword(ArrayCollection $solicitudes_reset_password) {
+        $this->solicitudes_reset_password = $solicitudes_reset_password;
+        return $this;
+    }
     
     public function eraseCredentials() {
         
@@ -195,6 +227,18 @@ class Usuario implements UserInterface
 
     public function getUsername() {
         return $this->getNombre();
+    }
+    
+    public function esValidoSolicitarRestablecerPassword() {
+        foreach ($this->solicitudes_reset_password as $solicitudRestablecerPassword) {
+            // si el token es valido, es decir que ya se ha solicitado restablecer 
+            // contraseña entonces no se debe poder enviar una nueva contraseña
+            // para evitar spam
+            if ($solicitudRestablecerPassword->esTokenValido()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

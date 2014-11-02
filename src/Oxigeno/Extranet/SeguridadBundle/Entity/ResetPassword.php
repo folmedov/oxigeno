@@ -4,11 +4,13 @@ namespace Oxigeno\Extranet\SeguridadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Oxigeno\Extranet\SeguridadBundle\Entity\Token;
+
 /**
  * ResetPassword
  *
  * @ORM\Table(name="reset_password")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Oxigeno\Extranet\SeguridadBundle\Entity\Repository\ResetPasswordRepository")
  */
 class ResetPassword
 {
@@ -24,16 +26,22 @@ class ResetPassword
     /**
      * @var Oxigeno\Extranet\SeguridadBundle\Entity\Usuario
      * 
-     * @ORM\OneToOne(targetEntity="Oxigeno\Extranet\SeguridadBundle\Entity\Usuario", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Oxigeno\Extranet\SeguridadBundle\Entity\Usuario", 
+     *                inversedBy="solicitudes_reset_password", 
+     *                cascade={"persist"})
      */
     private $usuario;
     
     /**
-     * @var \Oxigeno\Extranet\SeguridadBundle\Entity\Token
+     * @var Oxigeno\Extranet\SeguridadBundle\Entity\Token
      * 
      * @ORM\ManyToOne(targetEntity="Oxigeno\Extranet\SeguridadBundle\Entity\Token", cascade={"persist"})
      */
     private $token;
+    
+    public function __construct() {
+        $this->token = new Token();
+    }
 
     /**
      * Get id
@@ -55,15 +63,6 @@ class ResetPassword
     }
     
     /**
-     * Get token
-     * 
-     * @return \Oxigeno\Extranet\SeguridadBundle\Entity\Token
-     */
-    public function getToken() {
-        return $this->token;
-    }
-    
-    /**
      * Get usuario 
      * 
      * @param \Oxigeno\Extranet\SeguridadBundle\Entity\Usuario $usuario
@@ -75,15 +74,35 @@ class ResetPassword
     }
     
     /**
+     * Get token
+     * 
+     * @return Oxigeno\Extranet\SeguridadBundle\Entity\Token
+     */
+    public function getToken() {
+        return $this->token;
+    }
+    
+    /**
      * Get Token
      * 
-     * @param \Oxigeno\Extranet\SeguridadBundle\Entity\Token $token
+     * @param Oxigeno\Extranet\SeguridadBundle\Entity\Token $tokens
      * @return \Oxigeno\Extranet\SeguridadBundle\Entity\ResetPassword
      */
-    public function setToken($token) {
-        $this->token = $token;
+    public function setToken(Token $token) {
+        $this->token = $tokens;
         return $this;
     }
-
+    
+    /**
+     * Determina si la lista de tokens es valida
+     * 
+     * @return boolean
+     */
+    public function esTokenValido() {
+        if (!$this->token->isValid()) {
+            return false;
+        }
+        return true;
+    }
 
 }
