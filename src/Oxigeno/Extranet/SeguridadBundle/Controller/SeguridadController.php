@@ -7,8 +7,8 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\DBAL\DBALException;
 
 use Oxigeno\Extranet\SeguridadBundle\Entity\ResetPassword;
-use Oxigeno\Extranet\SeguridadBundle\Entity\Token;
 use Oxigeno\Extranet\SeguridadBundle\Form\RecuperarPasswordType;
+use Oxigeno\Extranet\PacienteBundle\Entity\Util;
 
 class SeguridadController extends Controller {
 
@@ -44,14 +44,14 @@ class SeguridadController extends Controller {
             $usuario = $em->getRepository('SeguridadBundle:Usuario')->findOneByCorreo($email_destino);
             
             if (!$usuario) {
-                $msg = 'El correo ingresado no está registrado.';
+                $msg = Util::MNS_LOGIN_RESET_PASS_CORREO_INVALIDO;
                 return $this->render('SeguridadBundle:Login:solicitar-restablecer-password.html.twig', array(
                             'msg' => $msg,
                 ));
             }
             
             if (!$usuario->esValidoSolicitarRestablecerPassword()) {
-                $msg = 'Ya se ha solicitado restablecer su contraseña en un periodo inferior a 1 hora.';
+                $msg = Util::MNS_LOGIN_RESET_PASS_TOKEN_INVALIDO;
                 return $this->render('SeguridadBundle:Login:solicitar-restablecer-password.html.twig', array(
                             'msg' => $msg,
                 ));
@@ -59,36 +59,35 @@ class SeguridadController extends Controller {
             
             $resetPassword = new ResetPassword();
             $resetPassword->setUsuario($usuario);
+            
+            $token = $resetPassword->getToken();
 
             $url = $this->generateUrl(
                     'seguridad_restablecer_password', 
-                    array('key' => base64_encode($resetPassword->getToken()->getKey())), true
+                    array('key' => base64_encode($token->getKey())), 
+                    true
             );
-
-            $tiempo_validez = $resetPassword->getToken()->getFechaCreacion()
-                    ->diff($resetPassword->getToken()->getFechaValidez());
-            $tiempo_validez = $tiempo_validez->format('%h hora(s)');
 
             $mensaje = \Swift_Message::newInstance()
                     ->setSubject('Restablecer contraseña en oxigeno')
                     ->setFrom('no-reply@oxigeno.dev')
                     ->setTo($email_destino)
                     ->setBody(
-                    $this->renderView('SeguridadBundle:Plantillas:email-restablecer-password.html.twig', array(
-                        'usuario' => $usuario->getNombre(),
-                        'tiempo_validez' => $tiempo_validez,
-                        'url' => $url,
-                            )
-                    ), 'text/html'
-                    )
-            ;
+                            $this->renderView(
+                                    'SeguridadBundle:Plantillas:email-restablecer-password.html.twig', 
+                                    array(
+                                        'usuario' => $usuario->getNombre(),
+                                        'tiempo_validez' => $token->getTiempoValidez(),
+                                        'url' => $url,
+                                        )), 
+                            'text/html')
+                ;
 
             try {
                 $em->persist($resetPassword);
                 $em->flush();
                 $this->get('mailer')->send($mensaje);
-                $msg = 'Se ha enviado un email a su correo electronico con '
-                        . 'las instrucciones a seguir.';
+                $msg = Util::MNS_LOGIN_RESET_PASS_CORREO_ENVIADO;
             } catch (DBALException $exc) {
                 $msg = 'Ya se ha solicitado restablecer su contraseña!';
             }
@@ -102,29 +101,42 @@ class SeguridadController extends Controller {
     function restablecerPasswordAction() {
         $em = $this->getDoctrine()->getManager();
         $peticion = $this->getRequest();
+        
+        $msg = null;
 
-        $usuario = null;
-        $formulario = null;
+        $token = $em->getRepository('SeguridadBundle:Token')
+                        ->findOneByTokenCodificado($peticion->get('key'));
 
-        $token = $em->getRepository('SeguridadBundle:Token')->findOneByTokenCodificado($peticion->get('key'));
+        if (!$token) {
+            $msg = 'Error 404! ';
+            return $this->render('SeguridadBundle:Login:restablecer-password.html.twig', array(
+                        'key' => $peticion->get('key'),
+                        'formulario' => isset($formulario) ? $formulario->createView() : null,
+                        'msg' => $msg,
+            ));
+        }
 
-        $msg = 'El tiempo de validez para cambiar su contraseña ha caducado ' . $token->getFechaValidez()->format('d-m-Y H:i:s') . '.';
+        if (!$token->isValid()) {
+            $msg = Util::MNS_LOGIN_RESET_PASS_TOKEN_CADUCADO;
+            return $this->render('SeguridadBundle:Login:restablecer-password.html.twig', array(
+                        'key' => $peticion->get('key'),
+                        'formulario' => isset($formulario) ? $formulario->createView() : null,
+                        'msg' => $msg,
+            ));
+        }
 
-        if ($token && $token->isValid()) {
-            $msg = null;
-            $usuario = $em->getRepository('SeguridadBundle:Usuario')
-                    ->findOneByToken($token->getKey());
+        $usuario = $em->getRepository('SeguridadBundle:Usuario')
+                ->findOneByToken($token->getKey());
+        
+        $formulario = $this->createForm(new RecuperarPasswordType(), $usuario);
 
-            $formulario = $this->createForm(new RecuperarPasswordType(), $usuario);
+        if ($peticion->getMethod() == 'POST') {
+            $formulario->bind($peticion);
+            print_r($formulario->getErrors());
 
-            if ($peticion->getMethod() == 'POST') {
-                $formulario->bind($peticion);
-                print_r($formulario->getErrors());
-
-                if ($formulario->isValid()) {
-                    // setear la nueva contraseña y persistir los cambios!
-                    return $this->redirect($this->generateUrl('seguridad_login'));
-                }
+            if ($formulario->isValid()) {
+                // setear la nueva contraseña y persistir los cambios!
+                return $this->redirect($this->generateUrl('seguridad_login'));
             }
         }
 

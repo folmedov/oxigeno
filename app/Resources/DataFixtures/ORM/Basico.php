@@ -27,7 +27,7 @@ class Basico implements FixtureInterface, ContainerAwareInterface
         $password = $encoder->encodePassword('1q2w3e', $salt);
         $usuarioAdmin->setPassword($password);
         $usuarioAdmin->setSalt($salt);
-        $usuarioAdmin->setEmail('folmedov@yahoo.cl');
+        $usuarioAdmin->setEmail('f.olmedo.v@gmail.com');
         
         $manager->persist($usuarioAdmin);
         $manager->flush();

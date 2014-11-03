@@ -114,7 +114,7 @@ class Token
      * 
      * @return \Datetime
      */
-    public function getFechaValidez() {
+    public function getFechaVencimiento() {
         return $this->fecha_vencimiento;
     }
     
@@ -124,17 +124,30 @@ class Token
      * @param \Datetime $fecha_validez
      * @return \Oxigeno\Extranet\SeguridadBundle\Entity\Token
      */
-    public function setFechaValidez(\Datetime $fecha_validez) {
+    public function setFechaVencimiento(\Datetime $fecha_validez) {
         $this->fecha_vencimiento = $fecha_validez;
         return $this;
     }
     
+    /**
+     * 
+     * @return boolean
+     */
     public function isValid() {
-        if ($this->getFechaValidez() > new \DateTime('now')) {
+        if ($this->getFechaVencimiento() > new \DateTime('now')) {
             return true;
         } else {
             return false;
         }
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getTiempoValidez() {
+        $tiempo_validez = $this->getFechaCreacion()->diff($this->getFechaVencimiento());
+        return $tiempo_validez->format('%h hora(s)');
     }
     
 }
